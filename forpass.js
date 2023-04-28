@@ -1,16 +1,17 @@
 
-import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
-let reset = document.querySelector("#reset")
+
+let reset = document.querySelector("#reset_form")
 reset.addEventListener("submit", function(){
 
-let email = document.querySelector("#resetEmail")
+let email = reset.querySelector("#email")
+email = email.value;
 
 
-const auth = getAuth();
-sendPasswordResetEmail(auth, email.value)
+
+firebase.auth().sendPasswordResetEmail(email)
   .then(() => {
-    alert("Reset Password Link Send")
+    alert("Reset Password Link Send");
   })
 
   .catch((error) => {
